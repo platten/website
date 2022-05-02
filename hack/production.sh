@@ -12,6 +12,7 @@ release=$(get_latest_release "${ORG}/enarx")
 echo "ORG: ${ORG}"
 echo "RELEASE: ${release}"
 
+(test -d versioned && echo "Deleting old versioned directory" && rm -rf versioned)
 git clone  --branch ${release} https://github.com/${ORG}/enarx.git versioned
 
 (test -d versioned/docs/ && rsync -avp --ignore-times versioned/docs/* versioned_staging) || echo versioned docs do not exist, skipping step

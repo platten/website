@@ -5,7 +5,7 @@ readonly REF="${REF:-main}"
 
 echo "ORG: ${ORG}"
 echo "REF: ${REF}"
-
+(test -d versioned && echo "Deleting old versioned directory" && rm -rf versioned)
 git clone --branch ${REF} https://github.com/${ORG}/enarx.git versioned
 
 (test -d versioned/docs/ && rsync -avp --ignore-times versioned/docs/* versioned_staging) || echo versioned docs do not exist, skipping step
